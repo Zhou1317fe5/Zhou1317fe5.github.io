@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>2多分类问题</title>
+    <link href="/2023/07/12/2%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/"/>
+    <url>/2023/07/12/2%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h1 id="多分类问题">多分类问题</h1><h3 id="softmax回归">Softmax回归</h3><p>当有四种分类时： <img src="/img/2多分类问题/Pasted%20image%2020230712183238.png" /></p><p>普试： <img src="/img/2多分类问题/Pasted%20image%2020230712183725.png" /> <span class="math inline">\(a_{j}\)</span>被解释为给定输入特征x时模型对y等于j的概率。</p><h3 id="softmax回归的损失函数">Softmax回归的损失函数</h3><p><img src="/img/2多分类问题/Pasted%20image%2020230712185008.png" /> 损失函数衡量的是在一个训练样例上的表现如何，所以对于一个特定的训练样本，y只能取一个值。因此最终只能针对 <span class="math inline">\({a}_j\)</span> 的一个值计算 <span class="math inline">\({a}_j\)</span> 的负对数，即在该特定训练样本中y的实际值等于j的任何值。例如，当y等于2时，损失函数只计算 <span class="math inline">\(-\log a_{2}\)</span></p><h3 id="神经网络的softmax输出">神经网络的Softmax输出</h3><p><img src="/img/2多分类问题/Pasted%20image%2020230712191305.png" /> sigmod激活函数，激活值 <span class="math inline">\({a}_1\)</span> 仅是 <span class="math inline">\({z}_1\)</span> 的函数 ，<span class="math inline">\({a}_2\)</span> 也只是 <span class="math inline">\({z}_2\)</span> 的函数。但是对于softmax函数，每一个激活值都取决于Z的所有值。</p><h3 id="tensorflow实现">Tensorflow实现</h3><p>基本实现： <img src="/img/2多分类问题/Pasted%20image%2020230712192259.png" /></p><p>更好的实现：（P68） <img src="/img/2多分类问题/Pasted%20image%2020230712194825.png" /></p><p>目的在于减小计算误差。计算机是将数字转换为二进制计算数值的，会有误差。原来是先计算出a，再将a带入到损失函数中计算损失函数，这种利用中间值计算的损失函数具有误差。</p><p>现在softmax不再单独计算，在计算cost时将a嵌入损失韩素内部一起算了。并且输出层为 liner，这样输出层只会直接输出Z的值，不再带入softmax计算了。 完整代码： <img src="/img/2多分类问题/Pasted%20image%2020230712195606.png" alt="多分类优化代码" /></p><p>逻辑回归优化代码： <img src="/img/2多分类问题/Pasted%20image%2020230712195739.png" alt="逻辑回归优化代码" /></p><p>epochs 迭代次数。</p><h1 id="多标签分类问题">多标签分类问题</h1><p><img src="/img/2多分类问题/Pasted%20image%2020230712203304.png" /> 多标签分类问题是指对一个样本进行多个类别的分类，而不是将样本分到唯一的类别中。在多标签分类问题中，每个样本可以属于多个类别，类别之间是相互独立的。</p><p>举个例子，假设我们有一个图像识别任务，需要对图像进行多个标签的分类，比如识别图像中的汽车、公交车、行人。一张图像可能同时包含多个标签，比如既有人又有汽车。</p><p>训练三个单独的模型，分别识别有没有汽车、公交车、行人。 训练一个模型一次识别完。输出层有三个sigmod神经元，因此我们解决的是三个二分类问题。</p><p><img src="/img/2多分类问题/Pasted%20image%2020230712204335.png" /></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>1神经网络</title>
     <link href="/2023/07/09/1%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     <url>/2023/07/09/1%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
