@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>C语言03-函数和递归123</title>
+    <link href="/2023/09/03/C%E8%AF%AD%E8%A8%8003-%E5%87%BD%E6%95%B0%E5%92%8C%E9%80%92%E5%BD%92123/"/>
+    <url>/2023/09/03/C%E8%AF%AD%E8%A8%8003-%E5%87%BD%E6%95%B0%E5%92%8C%E9%80%92%E5%BD%92123/</url>
+    
+    <content type="html"><![CDATA[<h1 id="函数分类">1 函数分类</h1><h2 id="库函数">1.1 库函数</h2><p>库函数查询工具： www.cplusplus.com http://en.cppreference.com（英文版） http://zh.cppreference.com（中文版）</p><h2 id="自定义函数">1.2 自定义函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">ret_type <span class="hljs-title function_">fun_name</span><span class="hljs-params">(para1, * )</span><br>&#123;<br>statement;<span class="hljs-comment">//语句项</span><br>&#125;<br></code></pre></td></tr></table></figure><p>ret_type 返回类型 fun_name 函数名 para1 函数参数</p><blockquote><p>写一个函数可以交换两个整形变量的内容。P12 1:16:10</p></blockquote><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-comment">//实现成函数，但是不能完成任务</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Swap1</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span><br>&#123;<br><span class="hljs-type">int</span> tmp = <span class="hljs-number">0</span>;<br>tmp = x;<br>x = y;<br>y = tmp;<br>&#125;<br><span class="hljs-comment">// x y 和 num1 num2是单独的地址，没有关系</span><br><br><span class="hljs-comment">//正确的版本</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">Swap2</span><span class="hljs-params">(<span class="hljs-type">int</span>* px, <span class="hljs-type">int</span>* py)</span><br>&#123;<br><span class="hljs-type">int</span> tmp = <span class="hljs-number">0</span>;<br>tmp = *px;<br>*px = *py;<br>*py = tmp;<br>&#125;<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br><span class="hljs-type">int</span> num1 = <span class="hljs-number">1</span>;<br><span class="hljs-type">int</span> num2 = <span class="hljs-number">2</span>;<br>Swap1(num1, num2);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Swap1:num1 = %d num2 = %d\n&quot;</span>, num1, num2);<br>Swap2(&amp;num1, &amp;num2);<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Swap2:num1 = %d num2 = %d\n&quot;</span>, num1, num2);<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="函数的参数">2 函数的参数</h1><h2 id="实参">2.1 实参</h2><p>真实传给函数的参数，叫实参。 实参可以是：常量、变量、表达式、函数等。 无论实参是何种类型的量，在进行函数调用时，它们都必须有确定的值，以便把这些值传送给形 参。</p><h2 id="形参">2.2 形参</h2><p>形式参数是指函数名后括号中的变量，因为形式参数只有在函数被调用的过程中才实例化（分配内 存单元），所以叫形式参数。形式参数当函数调用完成之后就自动销毁了。因此形式参数只在函数 中有效。 上面<code>Swap1</code> 和<code>Swap2</code> 函数中的参数<code>x，y，px，py</code> 都是<strong>形式参数</strong>。 在main函数中传给<code>Swap1</code> 的<code>num1</code> ， <code>num2</code> 和传给<code>Swap2</code> 函数的<code>&amp;num1</code> ， <code>&amp;num2</code> 是<strong>实际参数</strong>。 这里我们对函数的实参和形参进行分析： <img src="/img/C语言03-函数和递归123/C语言03-函数和递归123.png" /> 代码对应的内存分配如下： <img src="/img/C语言03-函数和递归123/C语言03-函数和递归123_1.png" /> 这里可以看到<code>Swap1</code> 函数在调用的时候， <code>x</code> ，<code>y</code> 拥有自己的空间，同时拥有了和实参一模一样的内容。 当实参传给形参的时候，形参其实是实参的一份临时搓贝 ，对形参的修改是不会改变实参的。</p><h1 id="函数的调用">3 函数的调用</h1><h2 id="传值调用">3.1 传值调用</h2><p>函数的形参和实参分别占有不同内存块，对形参的修改不会影响实参。</p><h2 id="传址调用">3.2 传址调用</h2><p>传址调用把变量的内存地址传递给函数参数。 这种传参方式可以让函数和函数外边的变量建立起真正的联系，也就是函数内部可以直接<strong>操作函数外部的变量</strong>。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>C语言基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>C/C++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>C语言02-分支和循环12</title>
     <link href="/2023/09/02/C%E8%AF%AD%E8%A8%8002-%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF12/"/>
     <url>/2023/09/02/C%E8%AF%AD%E8%A8%8002-%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF12/</url>
