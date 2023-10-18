@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>SEED2023新能源赛道-数据探索</title>
+    <link href="/2023/10/18/SEED2023%E6%96%B0%E8%83%BD%E6%BA%90%E8%B5%9B%E9%81%93-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2/"/>
+    <url>/2023/10/18/SEED2023%E6%96%B0%E8%83%BD%E6%BA%90%E8%B5%9B%E9%81%93-%E6%95%B0%E6%8D%AE%E6%8E%A2%E7%B4%A2/</url>
+    
+    <content type="html"><![CDATA[<p><img src="/img/assets/Snipaste_2023-10-18_07-58-22.png" /></p><figure><img src="assets/Snipaste_2023-10-18_07-59-23.png" alt="Snipaste_2023-10-18_07-59-23" /><figcaption aria-hidden="true">Snipaste_2023-10-18_07-59-23</figcaption></figure><p>Q：为什么呈上升趋势？为什么会有这些突出来的点？</p><p>A：去年仍受疫情影响；1月低谷是因为过年</p><p>去年的数据对今年来说没什么参考价值</p><p>家用车可能都有自己的充电桩，所以可以往网约车这边考虑</p><p>3月17号有个峰值：寒潮，温度下降了十几度，电耗上升，充电效率下降</p><p><img src="/img/assets/Snipaste_2023-10-18_08-01-30.png" /></p><figure><img src="assets/Snipaste_2023-10-18_08-26-06.png" alt="Snipaste_2023-10-18_08-26-06" /><figcaption aria-hidden="true">Snipaste_2023-10-18_08-26-06</figcaption></figure><p>h3反映经纬度坐标</p><p>对经纬度进行切割，通过调用腾讯的接口得到城市信息</p><p><img src="/imgassets/Snipaste_2023-10-18_08-26-21.png" /></p><p>按照城市耗电量大小画图</p><p><img src="/img/assets/Snipaste_2023-10-18_08-26-47.png" /></p><p>在1月时，大城市会先下降，再缓慢恢复；小城市是1月上升，年后慢慢降低</p><p>节假日时大城市小城市的现象是相反的</p><p>df_stub与df_test_stub完全一样，可以直接删</p><p>选前十四天取均值补缺失值</p><p><img src="/img/assets/Snipaste_2023-10-18_08-26-47-16975888244615.png" /></p><p>例如328站点，绝大部分时间都是0，容易把有数据的点当作异常值点</p><p><strong>感悟：</strong></p><p>（1）学会利用外部数据去辅助分析，这往往会帮助我们更好地理解数据反映的现象</p><p>（2）赛题数据处理方法应依据实际情况而论，不能像套模板一样的往上套数据清洗的流程</p><p>（3）了解到一个好用的工具，之后可以体验看看</p><p>转自：CSDN@__如果</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>工业蒸汽预测-赛题完整代码分享</title>
     <link href="/2023/09/28/%E5%B7%A5%E4%B8%9A%E8%92%B8%E6%B1%BD%E9%A2%84%E6%B5%8B-%E8%B5%9B%E9%A2%98%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/"/>
     <url>/2023/09/28/%E5%B7%A5%E4%B8%9A%E8%92%B8%E6%B1%BD%E9%A2%84%E6%B5%8B-%E8%B5%9B%E9%A2%98%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E5%88%86%E4%BA%AB/</url>
